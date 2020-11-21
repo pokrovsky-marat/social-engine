@@ -2,7 +2,6 @@ import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 function MyPosts(myProps) {
-  debugger;
   return (
     <div className={c.posts}>
       <p>My posts</p>
