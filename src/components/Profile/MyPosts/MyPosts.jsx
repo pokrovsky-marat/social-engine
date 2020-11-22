@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 function MyPosts(myProps) {
   return (
     <div className={c.posts}>
-      <p>My posts</p>
+      <h3>My posts</h3>
 
       <textarea placeholder="Your news..." id="" cols="30" rows="3"></textarea>
       <br />
