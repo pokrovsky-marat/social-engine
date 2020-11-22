@@ -1,6 +1,9 @@
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
+let postsData = [{id: 0, message: "Message 1"},
+    {id: 1, message: "Message 2"}];
+
 function MyPosts(myProps) {
   return (
     <div className={c.posts}>
@@ -9,8 +12,8 @@ function MyPosts(myProps) {
       <textarea placeholder="Your news..." id="" cols="30" rows="3"></textarea>
       <br />
       <button>Send</button>
-      <Post message="Message 1" />
-      <Post message="Message 2" />
+      <Post message={postsData[0].message} />
+      <Post message={postsData[1].message} />
       <Post message="Message 3" />
     </div>
   );
