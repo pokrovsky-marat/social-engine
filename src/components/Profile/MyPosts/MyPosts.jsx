@@ -13,7 +13,7 @@ function MyPosts(props) {
             <button>Send</button>
 
 
-            {props.arr.map(i => <Post message={i.message}/>)}
+            {props.posts.map(i => <Post message={i.message}/>)}
 
         </div>
     );

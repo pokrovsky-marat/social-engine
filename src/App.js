@@ -10,7 +10,6 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 
 
-
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -23,10 +22,11 @@ const App = (props) => {
 
                     <Switch>
                         <Route path='/profile'>
-                            <Profile arr={props.arr}/>
+                            <Profile posts={props.state.profilePage.posts}/>
                         </Route>
                         <Route path='/dialogs'>
-                            <Dialogs dialogs={props.dialogs} messages={props.messages}/>
+                            <Dialogs dialogs={props.state.dialogsPage.dialogs}
+                                     messages={props.state.dialogsPage.messages}/>
                         </Route>
                         <Route path='/news'>
                             <News/>
