@@ -10,7 +10,8 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 
 
-const App = () => {
+
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -22,7 +23,7 @@ const App = () => {
 
                     <Switch>
                         <Route path='/profile'>
-                            <Profile/>
+                            <Profile arr={props.arr}/>
                         </Route>
                         <Route path='/dialogs'>
                             <Dialogs/>
@@ -37,7 +38,7 @@ const App = () => {
                             <Music/>
                         </Route>
                         <Route path='/'>
-                            <h1>    Заглушка    </h1>
+                            <h1> Заглушка </h1>
                         </Route>
                     </Switch>
                 </div>
