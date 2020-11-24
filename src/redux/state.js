@@ -1,3 +1,10 @@
+export function addPost(post) {
+    console.log("addPost callback function has called")
+    let newId = state.profilePage.posts[state.profilePage.posts.length - 1].id + 1;
+    state.profilePage.posts.push({id: newId, message: post});
+    console.log(state)
+}
+
 let state = {
     profilePage: {
         posts: [

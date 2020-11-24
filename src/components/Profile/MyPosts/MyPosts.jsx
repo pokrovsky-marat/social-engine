@@ -2,14 +2,15 @@ import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from 'react';
 
-let newPost = React.createRef();
-
-function addPost() {
-
-    alert(newPost.current.value)
-}
 
 function MyPosts(props) {
+    let newPost = React.createRef();
+
+    function addPost() {
+        props.stateMethods(newPost.current.value);
+        alert(newPost.current.value)
+    }
+
     return (
 
         <div className={c.posts}>
