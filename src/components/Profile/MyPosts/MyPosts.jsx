@@ -8,7 +8,7 @@ function MyPosts(props) {
 
     function addPost() {
         props.stateMethods(newPost.current.value);
-        alert(newPost.current.value)
+        newPost.current.value = "";
     }
 
     return (
