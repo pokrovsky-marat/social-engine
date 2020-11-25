@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-// import {addPost} from "./redux/state"
 
-export let rerenderEntireTree = (state,addPost) => {
+
+
+export let rerenderEntireTree = (state,addPost, changePost) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} stateMethods={addPost}/>
+            <App state={state} addPost={addPost} changePost={changePost}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

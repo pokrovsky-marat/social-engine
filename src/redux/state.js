@@ -1,10 +1,16 @@
 import {rerenderEntireTree} from "../render";
 
-export function addPost(post) {
-
+export function addPost() {
     let newId = state.profilePage.posts[state.profilePage.posts.length - 1].id + 1;
-    state.profilePage.posts.push({id: newId, message: post});
-    rerenderEntireTree(state,addPost);
+    let message = state.profilePage.newPostMessage;
+    state.profilePage.posts.push({id: newId, message: message});
+    state.profilePage.newPostMessage = "";// Clear text area
+    rerenderEntireTree(state, addPost, changePost);
+}
+
+export function changePost(post) {
+    state.profilePage.newPostMessage = post;
+    rerenderEntireTree(state, addPost, changePost);
 }
 
 let state = {
@@ -14,7 +20,8 @@ let state = {
             {id: 1, message: " bah bah bababah"},
             {id: 3, message: "Message 3"},
             {id: 4, message: "Hey, hey, hey, ya-ha-ha!!!"}
-        ]
+        ],
+        newPostMessage: "New Post Message"
     },
     dialogsPage: {
         messages: [

@@ -7,8 +7,12 @@ function MyPosts(props) {
     let newPost = React.createRef();
 
     function addPost() {
-        props.stateMethods(newPost.current.value);
-        newPost.current.value = "";
+        props.addPost();
+    }
+
+    function textOnChange() {
+        props.changePost(newPost.current.value);
+
     }
 
     return (
@@ -16,13 +20,13 @@ function MyPosts(props) {
         <div className={c.posts}>
 
             <h3>My posts</h3>
-
-            <textarea ref={newPost} placeholder="Your news..." id="" cols="30" rows="3"></textarea>
+            <textarea onChange={textOnChange} value={props.profilePage.newPostMessage} ref={newPost}
+                      placeholder="Your news..." id="" cols="30" rows="3"></textarea>
             <br/>
             <button onClick={addPost}>Send</button>
 
 
-            {props.posts.map(i => <Post message={i.message}/>)}
+            {props.profilePage.posts.map(i => <Post message={i.message}/>)}
 
         </div>
     );
