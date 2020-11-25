@@ -4,7 +4,7 @@ export function addPost(post) {
 
     let newId = state.profilePage.posts[state.profilePage.posts.length - 1].id + 1;
     state.profilePage.posts.push({id: newId, message: post});
-    rerenderEntireTree(state);
+    rerenderEntireTree(state,addPost);
 }
 
 let state = {
