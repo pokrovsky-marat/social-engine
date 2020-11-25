@@ -1,16 +1,21 @@
-import {rerenderEntireTree} from "../render";
+function rerenderEntireTree() {
+
+}
+export function subscribe(callback) {
+    rerenderEntireTree = callback;
+}
 
 export function addPost() {
     let newId = state.profilePage.posts[state.profilePage.posts.length - 1].id + 1;
     let message = state.profilePage.newPostMessage;
     state.profilePage.posts.push({id: newId, message: message});
     state.profilePage.newPostMessage = "";// Clear text area
-    rerenderEntireTree(state, addPost, changePost);
+    rerenderEntireTree();
 }
 
 export function changePost(post) {
     state.profilePage.newPostMessage = post;
-    rerenderEntireTree(state, addPost, changePost);
+    rerenderEntireTree();
 }
 
 let state = {
