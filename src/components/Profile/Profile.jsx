@@ -7,8 +7,7 @@ function Profile(props) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts profilePage={props.profilePage} addPost={props.addPost}
-            changePost={props.changePost}/>
+            <MyPosts store={props.store}/>
         </div>
     );
 }

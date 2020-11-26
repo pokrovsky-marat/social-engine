@@ -6,11 +6,11 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {props.dialogs.map(item => <DialogItem id={item.id} name={item.name}/>)}
+                {props.store.getState().dialogsPage.dialogs.map(item => <DialogItem id={item.id} name={item.name}/>)}
             </div>
             <div className={s.messages}>
 
-                {props.messages.map(i => <Message text={i.text}/>)}
+                {props.store.getState().dialogsPage.messages.map(i => <Message text={i.text}/>)}
 
             </div>
         </div>

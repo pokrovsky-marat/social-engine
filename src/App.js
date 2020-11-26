@@ -22,13 +22,10 @@ const App = (props) => {
 
                     <Switch>
                         <Route path='/profile'>
-                            <Profile profilePage={props.state.profilePage}
-                                     addPost={props.addPost}
-                                     changePost={props.changePost}   />
+                            <Profile store={props.store}   />
                         </Route>
                         <Route path='/dialogs'>
-                            <Dialogs dialogs={props.state.dialogsPage.dialogs}
-                                     messages={props.state.dialogsPage.messages}/>
+                            <Dialogs store={props.store}/>
                         </Route>
                         <Route path='/news'>
                             <News/>
