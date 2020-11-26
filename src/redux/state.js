@@ -26,26 +26,38 @@ let store = {
             ]
         }
     },
+    _rerenderEntireTree() {
+        console.log("No observers was subscribed")
+    },
     getState() {
         return this._state;
     },
-    rerenderEntireTree() {
-        console.log("No observers was subscribed")
-    },
     subscribe(callback) {
-        this.rerenderEntireTree = callback;
+        this._rerenderEntireTree = callback;
     },
-    addPost() {
-        let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
-        let message = this._state.profilePage.newPostMessage;
-        this._state.profilePage.posts.push({id: newId, message: message});
-        this._state.profilePage.newPostMessage = "";// Clear text area
-        this.rerenderEntireTree();
-    },
-    changePost(post) {
-        this._state.profilePage.newPostMessage = post;
-        this.rerenderEntireTree();
-    }
+    /*   addPost() {
 
+           let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
+           let message = this._state.profilePage.newPostMessage;
+           this._state.profilePage.posts.push({id: newId, message: message});
+           this._state.profilePage.newPostMessage = "";// Clear text area
+           this._rerenderEntireTree();
+       },
+       changePost(post) {
+           this._state.profilePage.newPostMessage = post;
+           this._rerenderEntireTree();
+       }*/
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
+            let message = this._state.profilePage.newPostMessage;
+            this._state.profilePage.posts.push({id: newId, message: message});
+            this._state.profilePage.newPostMessage = "";// Clear text area
+            this._rerenderEntireTree();
+        } else if (action.type === 'CHANGE-POST') {
+            this._state.profilePage.newPostMessage = action.post;
+            this._rerenderEntireTree();
+        }
+    }
 }
 export default store;

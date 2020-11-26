@@ -7,11 +7,11 @@ function MyPosts(props) {
     let newPost = React.createRef();
 
     function addPost() {
-        props.store.addPost();
+        props.store.dispatch({type: 'ADD-POST'});
     }
 
     function textOnChange() {
-        props.store.changePost(newPost.current.value);
+        props.store.dispatch({type: 'CHANGE-POST', post: newPost.current.value});
     }
 
     return (
