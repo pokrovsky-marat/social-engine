@@ -1,3 +1,5 @@
+const CHANGE_POST = 'CHANGE-POST';
+const ADD_POST = 'ADD-POST';
 let store = {
     _state: {
         profilePage: {
@@ -48,16 +50,24 @@ let store = {
            this._rerenderEntireTree();
        }*/
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+
+        if (action.type === ADD_POST) {
             let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
             let message = this._state.profilePage.newPostMessage;
             this._state.profilePage.posts.push({id: newId, message: message});
             this._state.profilePage.newPostMessage = "";// Clear text area
             this._rerenderEntireTree();
-        } else if (action.type === 'CHANGE-POST') {
+        } else if (action.type === CHANGE_POST) {
             this._state.profilePage.newPostMessage = action.post;
             this._rerenderEntireTree();
         }
     }
+}
+export function addPostActionCreator() {
+    return {type: ADD_POST}
+}
+
+export function changePostActionCreator(post) {
+    return {type: CHANGE_POST, post: post}
 }
 export default store;

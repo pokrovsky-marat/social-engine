@@ -1,17 +1,20 @@
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from 'react';
+import {addPostActionCreator, changePostActionCreator} from "../../../redux/state";
 
 
 function MyPosts(props) {
     let newPost = React.createRef();
 
+
+
     function addPost() {
-        props.store.dispatch({type: 'ADD-POST'});
+        props.store.dispatch(addPostActionCreator());
     }
 
     function textOnChange() {
-        props.store.dispatch({type: 'CHANGE-POST', post: newPost.current.value});
+        props.store.dispatch(changePostActionCreator(newPost.current.value));
     }
 
     return (

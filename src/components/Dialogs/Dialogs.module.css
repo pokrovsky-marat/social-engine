@@ -15,7 +15,7 @@
     color: black;
 }
 .dialog a:hover{
-    color: red;
+    color: #ff0000;
     text-decoration: underline;
     cursor: crosshair;
 }
