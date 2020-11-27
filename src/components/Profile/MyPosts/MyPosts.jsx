@@ -1,7 +1,7 @@
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from 'react';
-import {addPostActionCreator, changePostActionCreator} from "../../../redux/state";
+import {addPostActionCreator, changePostActionCreator} from "../../../redux/profilePageReducer";
 
 
 function MyPosts(props) {
@@ -23,7 +23,7 @@ function MyPosts(props) {
 
             <h3>My posts</h3>
             <textarea onChange={textOnChange} value={props.store.getState().profilePage.newPostMessage} ref={newPost}
-                      placeholder="Your news..." id="" cols="30" rows="3"></textarea>
+                      placeholder="Your news..."  cols="30" rows="3"></textarea>
             <br/>
             <button onClick={addPost}>Send</button>
 

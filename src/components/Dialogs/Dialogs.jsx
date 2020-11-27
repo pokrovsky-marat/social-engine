@@ -2,7 +2,7 @@ import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from 'react'
-import {addDialogActionCreator, changeDialogActionCreator} from "../../redux/state";
+import {addDialogActionCreator, changeDialogActionCreator} from "../../redux/dialogsPageReducer";
 
 const Dialogs = (props) => {
     let newDialogMessage = React.createRef();
@@ -12,9 +12,11 @@ const Dialogs = (props) => {
     let changeDialogMessage = () => {
         props.store.dispatch(changeDialogActionCreator(newDialogMessage.current.value));
     }
+    debugger;
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
+
                 {props.store.getState().dialogsPage.dialogs.map(item => <DialogItem id={item.id} name={item.name}/>)}
             </div>
             <div className={s.messages}>

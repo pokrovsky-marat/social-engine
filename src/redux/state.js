@@ -1,7 +1,5 @@
-const CHANGE_POST = 'CHANGE-POST';
-const ADD_POST = 'ADD-POST';
-const ADD_DIALOG = 'ADD-DIALOG';
-const CHANGE_DIALOG = 'CHANGE-DIALOG';
+import profilePageReducer from "./profilePageReducer";
+import dialogsPageReducer from "./dialogsPageReducer";
 
 let store = {
     _state: {
@@ -41,57 +39,13 @@ let store = {
     subscribe(callback) {
         this._rerenderEntireTree = callback;
     },
-    /*   addPost() {
 
-           let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
-           let message = this._state.profilePage.newPostMessage;
-           this._state.profilePage.posts.push({id: newId, message: message});
-           this._state.profilePage.newPostMessage = "";// Clear text area
-           this._rerenderEntireTree();
-       },
-       changePost(post) {
-           this._state.profilePage.newPostMessage = post;
-           this._rerenderEntireTree();
-       }*/
     dispatch(action) {
-
-        if (action.type === ADD_POST) {
-            let newId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1;
-            let message = this._state.profilePage.newPostMessage;
-            this._state.profilePage.posts.push({id: newId, message: message});
-            this._state.profilePage.newPostMessage = "";// Clear text area
-            this._rerenderEntireTree();
-        } else if (action.type === CHANGE_POST) {
-            this._state.profilePage.newPostMessage = action.post;
-            this._rerenderEntireTree();
-        } else if (action.type === ADD_DIALOG) {
-            debugger;
-            let newId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1;
-            let message = this._state.dialogsPage.newDialogMessage;
-            this._state.dialogsPage.messages.push({id: newId, text: message});
-            this._state.dialogsPage.newDialogMessage = "";// Clear text area
-            this._rerenderEntireTree();
-        }else if (action.type === CHANGE_DIALOG) {
-            this._state.dialogsPage.newDialogMessage = action.message;
-            this._rerenderEntireTree();
-        }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
+        debugger;
+        this._rerenderEntireTree();
     }
-}
-
-export function addPostActionCreator() {
-    return {type: ADD_POST}
-}
-
-export function changePostActionCreator(post) {
-    return {type: CHANGE_POST, post: post}
-}
-
-export function addDialogActionCreator() {
-    return {type: ADD_DIALOG}
-}
-
-export function changeDialogActionCreator(message) {
-    return {type: CHANGE_DIALOG, message: message}
 }
 
 window.store = store;
