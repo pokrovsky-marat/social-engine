@@ -1,5 +1,8 @@
 const CHANGE_POST = 'CHANGE-POST';
 const ADD_POST = 'ADD-POST';
+const ADD_DIALOG = 'ADD-DIALOG';
+const CHANGE_DIALOG = 'CHANGE-DIALOG';
+
 let store = {
     _state: {
         profilePage: {
@@ -25,7 +28,8 @@ let store = {
                 {id: 5, name: "Kate"},
                 {id: 6, name: "Julia"},
                 {id: 7, name: "Yuri"}
-            ]
+            ],
+            newDialogMessage: "New Dialog Message"
         }
     },
     _rerenderEntireTree() {
@@ -60,9 +64,20 @@ let store = {
         } else if (action.type === CHANGE_POST) {
             this._state.profilePage.newPostMessage = action.post;
             this._rerenderEntireTree();
+        } else if (action.type === ADD_DIALOG) {
+            debugger;
+            let newId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1;
+            let message = this._state.dialogsPage.newDialogMessage;
+            this._state.dialogsPage.messages.push({id: newId, text: message});
+            this._state.dialogsPage.newDialogMessage = "";// Clear text area
+            this._rerenderEntireTree();
+        }else if (action.type === CHANGE_DIALOG) {
+            this._state.dialogsPage.newDialogMessage = action.message;
+            this._rerenderEntireTree();
         }
     }
 }
+
 export function addPostActionCreator() {
     return {type: ADD_POST}
 }
@@ -70,4 +85,14 @@ export function addPostActionCreator() {
 export function changePostActionCreator(post) {
     return {type: CHANGE_POST, post: post}
 }
+
+export function addDialogActionCreator() {
+    return {type: ADD_DIALOG}
+}
+
+export function changeDialogActionCreator(message) {
+    return {type: CHANGE_DIALOG, message: message}
+}
+
+window.store = store;
 export default store;
