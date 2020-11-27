@@ -1,18 +1,37 @@
 const ADD_DIALOG = 'ADD-DIALOG';
 const CHANGE_DIALOG = 'CHANGE-DIALOG';
 
+let initialState = {
+    messages: [
+        {id: 0, text: "Hi"},
+        {id: 1, text: "Hey, How is it going?"},
+        {id: 2, text: "Bye-bye"},
+    ], dialogs: [
+        {id: 0, name: "Traktorbek"},
+        {id: 1, name: "Peterberg"},
+        {id: 2, name: "Marat"},
+        {id: 3, name: "Pat"},
+        {id: 4, name: "John"},
+        {id: 5, name: "Kate"},
+        {id: 6, name: "Julia"},
+        {id: 7, name: "Yuri"}
+    ],
+    newDialogMessage: "New Dialog Message"
+}
 
-function dialogsPageReducer(state, action) {
-    if (action.type === ADD_DIALOG) {
-        let newId = state.messages[state.messages.length - 1].id + 1;
-        let message = state.newDialogMessage;
-        state.messages.push({id: newId, text: message});
-        state.newDialogMessage = "";// Clear text area
-
-    } else if (action.type === CHANGE_DIALOG) {
-        state.newDialogMessage = action.message;
+function dialogsPageReducer(state = initialState, action) {
+    switch (action.type) {
+        case ADD_DIALOG:
+            let newId = state.messages[state.messages.length - 1].id + 1;
+            let message = state.newDialogMessage;
+            state.messages.push({id: newId, text: message});
+            state.newDialogMessage = "";
+            break;
+        case CHANGE_DIALOG:
+            state.newDialogMessage = action.message;
+            break;
     }
-    return state;
+    return state
 }
 
 export function addDialogActionCreator() {

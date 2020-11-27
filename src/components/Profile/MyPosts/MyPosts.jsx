@@ -16,7 +16,7 @@ function MyPosts(props) {
     function textOnChange() {
         props.store.dispatch(changePostActionCreator(newPost.current.value));
     }
-
+debugger
     return (
 
         <div className={c.posts}>
