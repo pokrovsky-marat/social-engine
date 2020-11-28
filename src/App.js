@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Switch, NavLink} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -25,7 +26,7 @@ const App = (props) => {
                             <Profile store={props.store}   />
                         </Route>
                         <Route path='/dialogs'>
-                            <Dialogs store={props.store}/>
+                            <DialogsContainer store={props.store}/>
                         </Route>
                         <Route path='/news'>
                             <News/>

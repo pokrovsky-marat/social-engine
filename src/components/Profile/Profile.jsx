@@ -1,13 +1,13 @@
-import MyPosts from "./MyPosts/MyPosts";
-import c from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {addPost} from "../../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import React from "react";
+
 
 function Profile(props) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts store={props.store}/>
+            <MyPostsContainer store={props.store}/>
         </div>
     );
 }
