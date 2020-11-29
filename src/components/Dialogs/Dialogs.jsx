@@ -5,6 +5,7 @@ import React from 'react'
 
 
 const Dialogs = (props) => {
+    debugger
     let newDialogMessage = React.createRef();
 
     let addDialogMessage = () => {
@@ -18,16 +19,16 @@ const Dialogs = (props) => {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
 
-                {props.dialogs.map(item => <DialogItem id={item.id} name={item.name}/>)}
+                { props.dialogsPage.dialogs.map(item => <DialogItem id={item.id} name={item.name}/>)}
             </div>
             <div className={s.messages}>
-                <textarea onChange={changeDialogMessage} value={props.newDialogMessage} ref={newDialogMessage}
+                <textarea onChange={changeDialogMessage} value={props.dialogsPage.newDialogMessage} ref={newDialogMessage}
                           placeholder="type your message" name="" id="" cols="30"
                           rows="3"></textarea>
                 <div>
                     <button onClick={addDialogMessage}> Add your message</button>
                 </div>
-                {props.messages.map(i => <Message text={i.text}/>)}
+                {props.dialogsPage.messages.map(i => <Message text={i.text}/>)}
 
             </div>
         </div>

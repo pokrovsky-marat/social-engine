@@ -12,15 +12,22 @@ let initialState = {
 }
 
 function profilePageReducer(state = initialState, action) {
+    let newState = {...state}
+    newState.posts = [...state.posts]
     if (action.type === ADD_POST) {
         let newId = state.posts[state.posts.length - 1].id + 1;
         let message = state.newPostMessage;
-        state.posts.push({id: newId, message: message});
-        state.newPostMessage = "";// Clear text area
+        newState.posts.push({id: newId, message: message});
+        newState.newPostMessage = "";// Clear text area
     } else if (action.type === CHANGE_POST) {
-        state.newPostMessage = action.post;
+        {
+            let newState = {...state}
+            newState.newPostMessage = action.post;
+            return newState
+        }
+
     }
-    return state;
+    return newState;
 }
 
 
