@@ -24,7 +24,7 @@ function profilePageReducer(state = initialState, action) {
             let newState = {...state}
             newState.newPostMessage = action.post;
             return newState
-        }
+        }np
 
     }
     return newState;

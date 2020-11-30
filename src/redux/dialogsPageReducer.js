@@ -16,23 +16,22 @@ let initialState = {
         {id: 6, name: "Julia"},
         {id: 7, name: "Yuri"}
     ],
-    newDialogMessage: "New Dialog Message"
+    newDialogMessage: ""
 }
 
 function dialogsPageReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_DIALOG:
-            let newState = {...state}
-            newState.messages = [...state.messages]
             let newId = state.messages[state.messages.length - 1].id + 1;
             let message = state.newDialogMessage;
-            newState.messages.push({id: newId, text: message});
-            newState.newDialogMessage = "";
-            return newState;
+            return {
+                ...state,
+                newDialogMessage: "",
+                messages: [...state.messages, {id: newId, text: message}]
+            }
+
         case CHANGE_DIALOG: {
-            let newState = {...state}
-            newState.newDialogMessage = action.message;
-            return newState
+            return {...state, newDialogMessage: action.message}
         }
     }
     return state

@@ -3,7 +3,6 @@ import Post from "./Post/Post";
 import React from 'react';
 
 
-
 function MyPosts(props) {
     let newPost = React.createRef();
 
@@ -23,7 +22,7 @@ function MyPosts(props) {
             <br/>
             <button onClick={addPost}>Send</button>
 
-            {props.posts.map(i => <Post message={i.message}/>)}
+            {props.posts.map(i => <Post key={i.id} message={i.message}/>)}
 
         </div>
     );
