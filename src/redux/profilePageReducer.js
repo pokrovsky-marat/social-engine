@@ -5,10 +5,10 @@ let initialState = {
     posts: [
         {id: 0, message: "Hello my  sister-twister"},
         {id: 1, message: " bah bah bababah"},
-        {id: 3, message: "Message 3"},
+        {id: 3, message: "User 3"},
         {id: 4, message: "Hey, hey, hey, ya-ha-ha!!!"}
     ],
-    newPostMessage: "New Post Message"
+    newPostMessage: "New Post User"
 }
 
 function profilePageReducer(state = initialState, action) {
