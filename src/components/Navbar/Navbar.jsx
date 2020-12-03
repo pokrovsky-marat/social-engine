@@ -11,6 +11,9 @@ function Navbar() {
                 <NavLink activeClassName={c.active} to="/dialogs">Messages</NavLink>
             </div>
             <div>
+                <NavLink activeClassName={c.active} to="/users">Users</NavLink>
+            </div>
+            <div>
                 <NavLink activeClassName={c.active} to="/news">News</NavLink>
             </div>
             <div>
