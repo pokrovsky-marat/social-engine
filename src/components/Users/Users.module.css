@@ -1,6 +1,11 @@
 .users{
     padding: 10px;
 }
+.user{
+    border: 1px solid firebrick;
+    padding: 10px;
+    margin-top: 5px;
+}
 .user img{
     width: 100px;
     height: 100px;

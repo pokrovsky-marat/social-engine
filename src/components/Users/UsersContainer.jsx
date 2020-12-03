@@ -6,7 +6,7 @@ import {changeFollowUserActionCreator, setStateActionCreator} from "../../redux/
 
 let mapStateToProps = (state) => {
     return {
-        usersPage: state.usersPage
+        users: state.usersPage.users
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -15,7 +15,6 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(changeFollowUserActionCreator(id))
         },
         setState: (state) => {
-
             dispatch(setStateActionCreator(state))
         }
     }

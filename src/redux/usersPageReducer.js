@@ -37,13 +37,16 @@ function usersPageReducer(state = initialState, action) {
             ...state,
             users: state.users.map(item => {
                 if (item.id === action.id) {
-                    return {...item, isFollow: !item.isFollow}
+                    return {...item, followed: !item.followed}
                 }
                 return item
             })
         }
     } else if (action.type === SET_STATE) {
-        return {...state, users: action.state};
+         return {...state, users: action.state};
+        // return {...state, users: [...state.users, ...action.state] };
+        //Вызывает ошибку
+
     }
 
     return state;
