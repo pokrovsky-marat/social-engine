@@ -5,13 +5,18 @@ import img from "./../../assets/pics/146-1468479_my-profile-icon-blank-profile-p
 
 
 class Users extends React.Component {
-    constructor(props) {
-        console.log("constructor")
-        super(props);
+    componentDidMount() {
+        console.log('componentDidMount')
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then((response) => {
                 this.props.setState(response.data.items);
             })
+    }
+    componentDidUpdate() {
+        console.log('componentDidUpdate')
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
     }
 
     followBtnClick(value) {
