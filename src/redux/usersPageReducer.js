@@ -1,33 +1,12 @@
 const FOLLOW_USER = 'FOLLOW-USER';
 const SET_STATE = 'SET-STATE';
+const CHANGE_SHEET = 'CHANGE-SHEET'
 
 let initialState = {
-    users: [/*
-        {
-            id: 0,
-            name: "Alex B",
-            status: "Ready to chat",
-            location: {city: "Moscow", country: "Russia"},
-            isFollow: true,
-            urlPhoto: "https://www.goldennumber.net/wp-content/uploads/2013/08/florence-colgate-england-most-beautiful-face.jpg"
-        },
-        {
-            id: 1,
-            name: "Roman C",
-            status: "Kiss me now",
-            location: {city: "London", country: "England"},
-            isFollow: false,
-            urlPhoto: "https://www.goldennumber.net/wp-content/uploads/2013/08/florence-colgate-england-most-beautiful-face.jpg"
-        },
-        {
-            id: 2,
-            name: "Marat D",
-            status: "I like to move it, move it",
-            location: {city: "Paris", country: "France"},
-            isFollow: true,
-            urlPhoto: "https://www.goldennumber.net/wp-content/uploads/2013/08/florence-colgate-england-most-beautiful-face.jpg"
-        },*/
-    ]
+    users: [],
+    totalCount: 0,
+    pages: 10,      //how many pages to show to one sheet
+    numberSheet: 1  //What number of sheets to show user
 }
 
 function usersPageReducer(state = initialState, action) {
@@ -43,9 +22,15 @@ function usersPageReducer(state = initialState, action) {
             })
         }
     } else if (action.type === SET_STATE) {
-         return {...state, users: action.state};
+
+        return {...state, users: action.state.items, totalCount: action.state.totalCount};
         // return {...state, users: [...state.users, ...action.state] };
         //Вызывает ошибку
+
+    } else if (action.type === CHANGE_SHEET) {
+
+        return {...state, users: action.state.items, numberSheet: action.number};
+
 
     }
 
@@ -59,6 +44,10 @@ export function changeFollowUserActionCreator(id) {
 
 export function setStateActionCreator(state) {
     return {type: SET_STATE, state: state}
+}
+
+export function changeNumberSheetActionCreator(number, state) {
+    return {type: CHANGE_SHEET, number: number, state: state}
 }
 
 export default usersPageReducer;
