@@ -40,19 +40,19 @@ function usersPageReducer(state = initialState, action) {
 }
 
 
-export function changeFollowUserActionCreator(id) {
+export function changeFollow(id) {
     return {type: FOLLOW_USER, id: id}
 }
 
-export function setStateActionCreator(state) {
+export function setState(state) {
     return {type: SET_STATE, state: state}
 }
 
-export function changeNumberSheetActionCreator(number, state) {
+export function changeNumberSheet(number, state) {
     return {type: CHANGE_SHEET, number: number, state: state}
 }
 
-export function togglePreloaderActionCreator(isFetching) {
+export function togglePreloader(isFetching) {
     return {type: TOGGLE_PRELOADER, isFetching}
 }
 

@@ -2,9 +2,9 @@ import React from "react";
 import * as axios from "axios";
 import {connect} from "react-redux";
 import {
-    changeFollowUserActionCreator,
-    changeNumberSheetActionCreator,
-    setStateActionCreator, togglePreloaderActionCreator,
+    changeFollow,
+    changeNumberSheet,
+    setState, togglePreloader,
 } from "../../redux/usersPageReducer";
 import PresentUsers from "./PresentUsers";
 import Preloader from "../common/Preloader";
@@ -23,7 +23,6 @@ class UsersContainer extends React.Component {
             )
             .then((response) => {
                 this.props.togglePreloader(false);
-                console.log("request to server from componentDidMount");
                 this.props.setState(response.data);
             });
     }
@@ -32,15 +31,13 @@ class UsersContainer extends React.Component {
         this.props.changeFollow(value);
     }
 
-    // followBtnClick(value) {
-    //   debugger;
-    //   this.props.changeFollow(value);
-    //   //TypeError: Cannot read property 'changeFollow' of undefined
-    // }
-    // followBtnClick = (value) => {
-    //   debugger;
-    //   this.props.changeFollow(value);
-    // };
+    /*    followBtnClick(value) {
+          this.props.changeFollow(value);
+          //TypeError: Cannot read property 'changeFollow' of undefined
+        }
+        followBtnClick = (value) => {
+          this.props.changeFollow(value);
+        };*/
 
     goToPage = (pageNumber) => {
         this.props.togglePreloader(true);
@@ -50,7 +47,6 @@ class UsersContainer extends React.Component {
             )
             .then((response) => {
                 this.props.togglePreloader(false);
-                console.log("request to server from goToPage");
                 this.props.changeNumberSheet(pageNumber, response.data);
             });
     };
@@ -59,8 +55,6 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching && <Preloader/>}
-
-
                 <PresentUsers
                     // props={this.props}
                     totalCount={this.props.totalCount}
@@ -71,7 +65,6 @@ class UsersContainer extends React.Component {
                     followBtnClick={this.followBtnClick}
                 />
             </>
-
         );
     }
 }
@@ -85,21 +78,10 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
     };
 };
-let mapDispatchToProps = (dispatch) => {
-    return {
-        changeFollow: (id) => {
-            dispatch(changeFollowUserActionCreator(id));
-        },
-        setState: (state) => {
-            dispatch(setStateActionCreator(state));
-        },
-        changeNumberSheet: (number, state) => {
-            dispatch(changeNumberSheetActionCreator(number, state));
-        },
-        togglePreloader: (isFetching) => {
-            dispatch(togglePreloaderActionCreator(isFetching));
-        },
-    };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+    changeFollow,
+    setState,
+    changeNumberSheet,
+    togglePreloader
+})(UsersContainer);
