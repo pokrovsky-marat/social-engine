@@ -1,5 +1,6 @@
 const CHANGE_POST = 'CHANGE-POST';
 const ADD_POST = 'ADD-POST';
+const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 
 let initialState = {
     posts: [
@@ -8,7 +9,8 @@ let initialState = {
         {id: 3, message: "User 3"},
         {id: 4, message: "Hey, hey, hey, ya-ha-ha!!!"}
     ],
-    newPostMessage: "New Post User"
+    newPostMessage: "",
+    profileInfo: null
 }
 
 function profilePageReducer(state = initialState, action) {
@@ -24,8 +26,11 @@ function profilePageReducer(state = initialState, action) {
             let newState = {...state}
             newState.newPostMessage = action.post;
             return newState
-        }np
-
+        }
+    } else if (action.type === SET_PROFILE_INFO) {
+        {
+            return {...state, profileInfo: action.profileInfo}
+        }
     }
     return newState;
 }
@@ -37,6 +42,10 @@ export function addPostActionCreator() {
 
 export function changePostActionCreator(post) {
     return {type: CHANGE_POST, post: post}
+}
+
+export function setProfileInfo(profileInfo) {
+    return {type: SET_PROFILE_INFO, profileInfo}
 }
 
 export default profilePageReducer;
