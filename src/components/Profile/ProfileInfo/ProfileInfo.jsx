@@ -1,5 +1,6 @@
 import c from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader";
+import ava from "./../../../assets/pics/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
 function ProfileInfo(props) {
 if(props.profileInfo){
     return (
@@ -33,7 +34,7 @@ if(props.profileInfo){
                 </table>
             </div>
             <div className={c.description}>
-                <img src={props.profileInfo.photos.large} alt="ava"/>
+                <img className={c.ava} src={props.profileInfo.photos.large || ava} alt="ava"/>
             </div>
         </div>
     );
