@@ -6,6 +6,7 @@ import {api} from "../../api/api";
 
 
 let PresentUsers = (props) => {
+    console.log('PresentUser')
     let countPagesArray = [];
     let countPages = Math.ceil(props.totalCount / props.pages);
     for (let i = 1; i <= countPages; i++) {
@@ -34,26 +35,27 @@ let PresentUsers = (props) => {
                         <NavLink to={`/profile/${item.id}`}><img src={item.photos.small || img} alt="ava"/></NavLink>
                     </div>
                     <div>
-                        <button
+                        <button  disabled={props.isRequestGoing && props.idButton==item.id}
                             onClick={() => {
-                                debugger
+                                props.toggleButton(true, item.id);
                                 if (item.followed) {
                                     api.unfollow(item.id)
                                         .then((response) => {
-                                            debugger
+
                                             if (response.resultCode === 0){
-                                                props.followBtnClick(item.id)}
+                                                props.followBtnClick(item.id)
+                                                props.toggleButton(false);}
                                         });
                                 } else {
-                                    debugger
                                     api.follow(item.id)
                                         .then((response) => {
-                                            debugger
+
                                             if (response.resultCode === 0){
-                                                props.followBtnClick(item.id)}
+                                                props.followBtnClick(item.id)
+                                                props.toggleButton(false);}
                                         });
                                 }
-                            }}
+                               }}
                         >
                             {item.followed ? "Don't follow" : "Follow"}
                         </button>

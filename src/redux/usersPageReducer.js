@@ -2,13 +2,16 @@ const FOLLOW_USER = 'FOLLOW-USER';
 const SET_STATE = 'SET-STATE';
 const CHANGE_SHEET = 'CHANGE-SHEET'
 const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER'
+const TOGGLE_BUTTON = 'TOGGLE-BUTTON'
 
 let initialState = {
     users: [],
     totalCount: 0,
     pages: 10,      //how many pages to show to one sheet
     numberSheet: 1,  //What number of sheets to show user
-    isFetching: false
+    isFetching: false,
+    isRequestGoing: false,
+    idButton: null
 }
 
 function usersPageReducer(state = initialState, action) {
@@ -34,8 +37,9 @@ function usersPageReducer(state = initialState, action) {
     } else if (action.type === TOGGLE_PRELOADER) {
 
         return {...state, isFetching: action.isFetching};
+    } else if (action.type === TOGGLE_BUTTON) {
+        return {...state, isRequestGoing: action.isRequestGoing, idButton: action.idButton};
     }
-
     return state;
 }
 
@@ -54,6 +58,11 @@ export function changeNumberSheet(number, state) {
 
 export function togglePreloader(isFetching) {
     return {type: TOGGLE_PRELOADER, isFetching}
+}
+
+export function toggleButton(isRequestGoing, idButton) {
+
+    return {type: TOGGLE_BUTTON, isRequestGoing, idButton}
 }
 
 export default usersPageReducer;

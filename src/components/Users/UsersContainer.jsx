@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     changeFollow,
     changeNumberSheet,
-    setState, togglePreloader,
+    setState, toggleButton, togglePreloader,
 } from "../../redux/usersPageReducer";
 import PresentUsers from "./PresentUsers";
 import Preloader from "../common/Preloader";
@@ -47,6 +47,7 @@ class UsersContainer extends React.Component {
     };
 
     render() {
+        console.log("render")
         return (
             <>
                 {this.props.isFetching && <Preloader/>}
@@ -58,6 +59,9 @@ class UsersContainer extends React.Component {
                     goToPage={this.goToPage}
                     users={this.props.users}
                     followBtnClick={this.followBtnClick}
+                    isRequestGoing={this.props.isRequestGoing}
+                    toggleButton={this.props.toggleButton}
+                    idButton={this.props.idButton}
                 />
             </>
         );
@@ -71,6 +75,8 @@ let mapStateToProps = (state) => {
         pages: state.usersPage.pages,
         numberSheet: state.usersPage.numberSheet,
         isFetching: state.usersPage.isFetching,
+        isRequestGoing: state.usersPage.isRequestGoing,
+        idButton: state.usersPage.idButton
     };
 };
 
@@ -78,5 +84,6 @@ export default connect(mapStateToProps, {
     changeFollow,
     setState,
     changeNumberSheet,
-    togglePreloader
+    togglePreloader,
+    toggleButton
 })(UsersContainer);

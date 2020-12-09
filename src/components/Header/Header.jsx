@@ -1,7 +1,6 @@
 import c from "./Header.module.css";
 
 function Header(props) {
-    debugger
     return (
         <header className={c.header}>
             <img
