@@ -20,7 +20,7 @@ class UsersContainer extends React.Component {
         axios
             .get(
                 `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberSheet}&count=${this.props.pages}`
-            )
+            ,{withCredentials:true})
             .then((response) => {
                 this.props.togglePreloader(false);
                 this.props.setState(response.data);
@@ -44,7 +44,7 @@ class UsersContainer extends React.Component {
         axios
             .get(
                 `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pages}`
-            )
+            ,{withCredentials:true})
             .then((response) => {
                 this.props.togglePreloader(false);
                 this.props.changeNumberSheet(pageNumber, response.data);
