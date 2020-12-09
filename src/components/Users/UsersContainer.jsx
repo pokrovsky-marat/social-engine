@@ -1,5 +1,4 @@
 import React from "react";
-import * as axios from "axios";
 import {connect} from "react-redux";
 import {
     changeFollow,
@@ -8,6 +7,8 @@ import {
 } from "../../redux/usersPageReducer";
 import PresentUsers from "./PresentUsers";
 import Preloader from "../common/Preloader";
+import {api} from "../../api/api";
+
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -17,13 +18,10 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.togglePreloader(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberSheet}&count=${this.props.pages}`
-            ,{withCredentials:true})
+        api.getUsers(this.props.numberSheet, this.props.pages)
             .then((response) => {
                 this.props.togglePreloader(false);
-                this.props.setState(response.data);
+                this.props.setState(response);
             });
     }
 
@@ -41,13 +39,10 @@ class UsersContainer extends React.Component {
 
     goToPage = (pageNumber) => {
         this.props.togglePreloader(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pages}`
-            ,{withCredentials:true})
+        api.getUsers(pageNumber, this.props.pages)
             .then((response) => {
                 this.props.togglePreloader(false);
-                this.props.changeNumberSheet(pageNumber, response.data);
+                this.props.changeNumberSheet(pageNumber, response);
             });
     };
 

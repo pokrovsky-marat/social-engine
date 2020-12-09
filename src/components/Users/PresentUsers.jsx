@@ -2,7 +2,7 @@ import s from "./Users.module.css";
 import React from "react";
 import img from "./../../assets/pics/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
+import {api} from "../../api/api";
 
 
 let PresentUsers = (props) => {
@@ -38,30 +38,18 @@ let PresentUsers = (props) => {
                             onClick={() => {
                                 debugger
                                 if (item.followed) {
-                                    axios
-                                        .delete(
-                                            `https://social-network.samuraijs.com/api/1.0/follow/` + item.id
-                                            , {
-                                                withCredentials: true,
-                                                headers: {"API-KEY": "6197b56b-a973-486a-918e-860f7c5323e8"}
-                                            })
+                                    api.unfollow(item.id)
                                         .then((response) => {
                                             debugger
-                                            if (response.data.resultCode === 0){
+                                            if (response.resultCode === 0){
                                                 props.followBtnClick(item.id)}
                                         });
                                 } else {
                                     debugger
-                                    axios
-                                        .post(
-                                            `https://social-network.samuraijs.com/api/1.0/follow/` + item.id
-                                            ,null, {
-                                                withCredentials: true,
-                                                headers: {"API-KEY": "6197b56b-a973-486a-918e-860f7c5323e8"}
-                                            })
+                                    api.follow(item.id)
                                         .then((response) => {
                                             debugger
-                                            if (response.data.resultCode === 0){
+                                            if (response.resultCode === 0){
                                                 props.followBtnClick(item.id)}
                                         });
                                 }
