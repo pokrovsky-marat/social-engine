@@ -9,6 +9,10 @@ export const api = {
     getUsers(page = 1, count = 10) {
         return instance.get(`users?page=${page}&count=${count}`).then(response => response.data)
     },
+    getUser(id) {
+        return instance.get(`profile/${id}`).then(response => response.data)
+    },
+
     authMe() {
         return instance.get(`auth/me`).then(response => response.data)
     },

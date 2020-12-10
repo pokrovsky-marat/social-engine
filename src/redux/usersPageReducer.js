@@ -1,3 +1,5 @@
+import {api} from "../api/api";
+
 const FOLLOW_USER = 'FOLLOW-USER';
 const SET_STATE = 'SET-STATE';
 const CHANGE_SHEET = 'CHANGE-SHEET'
@@ -15,7 +17,7 @@ let initialState = {
 }
 
 function usersPageReducer(state = initialState, action) {
-
+    console.log("usersPageReducer")
     if (action.type === FOLLOW_USER) {
         return {
             ...state,
@@ -43,7 +45,7 @@ function usersPageReducer(state = initialState, action) {
     return state;
 }
 
-
+//action creators
 export function changeFollow(id) {
     return {type: FOLLOW_USER, id: id}
 }
@@ -64,5 +66,51 @@ export function toggleButton(isRequestGoing, idButton) {
 
     return {type: TOGGLE_BUTTON, isRequestGoing, idButton}
 }
+
+//ThunkCreators
+export const getUsers = (numberSheet, pages) => {
+    return function (dispatch) {
+        dispatch(togglePreloader(true));
+        api.getUsers(numberSheet, pages)
+            .then((response) => {
+                dispatch(togglePreloader(false));
+                dispatch(setState(response));
+            });
+    }
+}
+export const goToPage = (numberSheet, pages) => {
+    return function (dispatch) {
+        dispatch(togglePreloader(true));
+        api.getUsers(numberSheet, pages)
+            .then((response) => {
+                dispatch(togglePreloader(false));
+                dispatch(changeNumberSheet(numberSheet, response));
+            });
+    }
+}
+export const toggleFollowButton = (id, condition,) => {
+    return function (dispatch) {
+
+        dispatch(toggleButton(true, id));
+        if (condition) {
+            api.unfollow(id)
+                .then((response) => {
+                    if (response.resultCode === 0) {
+                        dispatch(changeFollow(id));
+                        dispatch(toggleButton(false));
+                    }
+                });
+        } else {
+            api.follow(id)
+                .then((response) => {
+                    if (response.resultCode === 0) {
+                        dispatch(changeFollow(id));
+                        dispatch(toggleButton(false));
+                    }
+                });
+        }
+    }
+}
+
 
 export default usersPageReducer;

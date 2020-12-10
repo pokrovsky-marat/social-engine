@@ -1,3 +1,5 @@
+import {api} from "../api/api";
+
 const CHANGE_POST = 'CHANGE-POST';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
@@ -14,6 +16,7 @@ let initialState = {
 }
 
 function profilePageReducer(state = initialState, action) {
+    console.log("profilePageReducer")
     let newState = {...state}
     newState.posts = [...state.posts]
     if (action.type === ADD_POST) {
@@ -46,6 +49,15 @@ export function changePostActionCreator(post) {
 
 export function setProfileInfo(profileInfo) {
     return {type: SET_PROFILE_INFO, profileInfo}
+}
+
+export const getUser = (userId) => {
+    return (dispatch) => {
+        let id = userId || 13067;
+        api.getUser(id).then((response) => {
+            dispatch(setProfileInfo(response));
+        });
+    }
 }
 
 export default profilePageReducer;

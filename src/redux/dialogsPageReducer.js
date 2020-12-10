@@ -20,6 +20,7 @@ let initialState = {
 }
 
 function dialogsPageReducer(state = initialState, action) {
+    console.log("dialogsPageReducer")
     switch (action.type) {
         case ADD_DIALOG:
             let newId = state.messages[state.messages.length - 1].id + 1;

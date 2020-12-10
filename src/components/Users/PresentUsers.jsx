@@ -2,11 +2,8 @@ import s from "./Users.module.css";
 import React from "react";
 import img from "./../../assets/pics/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
 import {NavLink} from "react-router-dom";
-import {api} from "../../api/api";
-
 
 let PresentUsers = (props) => {
-    console.log('PresentUser')
     let countPagesArray = [];
     let countPages = Math.ceil(props.totalCount / props.pages);
     for (let i = 1; i <= countPages; i++) {
@@ -35,27 +32,10 @@ let PresentUsers = (props) => {
                         <NavLink to={`/profile/${item.id}`}><img src={item.photos.small || img} alt="ava"/></NavLink>
                     </div>
                     <div>
-                        <button  disabled={props.isRequestGoing && props.idButton==item.id}
-                            onClick={() => {
-                                props.toggleButton(true, item.id);
-                                if (item.followed) {
-                                    api.unfollow(item.id)
-                                        .then((response) => {
-
-                                            if (response.resultCode === 0){
-                                                props.followBtnClick(item.id)
-                                                props.toggleButton(false);}
-                                        });
-                                } else {
-                                    api.follow(item.id)
-                                        .then((response) => {
-
-                                            if (response.resultCode === 0){
-                                                props.followBtnClick(item.id)
-                                                props.toggleButton(false);}
-                                        });
-                                }
-                               }}
+                        <button disabled={props.isRequestGoing && props.idButton == item.id}
+                                onClick={() => {
+                                    props.toggleFollowButton(item.id, item.followed);
+                                }}
                         >
                             {item.followed ? "Don't follow" : "Follow"}
                         </button>
