@@ -8,6 +8,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -36,6 +37,10 @@ const App = (props) => {
                         <Route path='/music'>
                             <Music/>
                         </Route>
+                        <Route path='/login'>
+                            <Login/>
+                        </Route>
+
                         <Route path='/'>
                             <h1> Заглушка </h1>
                         </Route>
