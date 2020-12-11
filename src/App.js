@@ -10,8 +10,11 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
+import React from "react";
+
 
 const App = (props) => {
+
     return (
         <BrowserRouter>    <div className="app-wrapper">
                 <HeaderContainer/>

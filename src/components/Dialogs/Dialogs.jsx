@@ -6,7 +6,6 @@ import {Redirect} from "react-router-dom";
 
 
 const Dialogs = (props) => {
-    if (!props.isAuth) return <Redirect to="/login"/>
     let newDialogMessage = React.createRef();
     let addDialogMessage = () => {
         props.addDialogMessage();
