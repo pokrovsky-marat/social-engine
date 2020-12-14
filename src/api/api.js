@@ -10,7 +10,9 @@ export const api = {
         return instance.get(`users?page=${page}&count=${count}`).then(response => response.data)
     },
     getUser(id) {
-        return instance.get(`profile/${id}`).then(response => response.data)
+        console.log("-------------------")
+        console.warn("This method is obsolete, Please use profileApi.getUserProfile(id)")
+        return profileApi.getUserProfile(id)
     },
 
     authMe() {
@@ -23,5 +25,21 @@ export const api = {
         return instance.post(`follow/${id}`).then(response => response.data)
     }
 }
+export const profileApi = {
+
+    getUserProfile(id) {
+        return instance.get(`profile/${id}`).then(response => response.data)
+    },
+    getStatusProfile(id) {
+        return instance.get(`profile/status/${id}`).then(response => response.data)
+    },
+    updateStatusProfile(status) {
+        return instance.put(`profile/status`,{status}).then(response => response.data)
+    },
+
+
+
+}
+
 
 

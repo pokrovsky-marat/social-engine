@@ -8,7 +8,7 @@ function ProfileInfo(props) {
     if (props.profileInfo) {
         return (
             <div>
-                <StatusProfile myStatus='my status'/>
+                <StatusProfile {...props}/>
                 <div>
                     {/*<img
                     className={c.content_img}

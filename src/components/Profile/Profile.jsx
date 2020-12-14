@@ -6,7 +6,7 @@ import React from "react";
 function Profile(props) {
     return (
         <div>
-            <ProfileInfo profileInfo={props.profileInfo}/>
+            <ProfileInfo {...props} />
             <MyPostsContainer />
         </div>
     );
