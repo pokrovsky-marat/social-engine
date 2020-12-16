@@ -10,14 +10,14 @@ export const api = {
         return instance.get(`users?page=${page}&count=${count}`).then(response => response.data)
     },
     getUser(id) {
-        console.log("-------------------")
         console.warn("This method is obsolete, Please use profileApi.getUserProfile(id)")
         return profileApi.getUserProfile(id)
     },
 
-    authMe() {
-        return instance.get(`auth/me`).then(response => response.data)
-    },
+/*    authMe() {
+        console.warn("This method is obsolete, Please use authApi.authMe() method")
+        return authApi.authMe()
+    },*/
     unfollow(id) {
         return instance.delete(`follow/${id}`).then(response => response.data)
     },
@@ -34,11 +34,19 @@ export const profileApi = {
         return instance.get(`profile/status/${id}`).then(response => response.data)
     },
     updateStatusProfile(status) {
-        return instance.put(`profile/status`,{status}).then(response => response.data)
+        return instance.put(`profile/status`, {status}).then(response => response.data)
     },
-
-
-
+}
+export const authApi = {
+    authMe() {
+        return instance.get(`auth/me`).then(response => response.data)
+    },
+    authLogin(email, password, rememberMe) {
+        return instance.post(`auth/login`, {email, password, rememberMe}).then(response => response.data)
+    },
+    authLogOut() {
+        return instance.delete(`auth/login`).then(response => response.data)
+    },
 }
 
 
