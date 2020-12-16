@@ -1,5 +1,4 @@
 const ADD_DIALOG = 'ADD-DIALOG';
-const CHANGE_DIALOG = 'CHANGE-DIALOG';
 
 let initialState = {
     messages: [
@@ -16,7 +15,6 @@ let initialState = {
         {id: 6, name: "Julia"},
         {id: 7, name: "Yuri"}
     ],
-    newDialogMessage: ""
 }
 
 function dialogsPageReducer(state = initialState, action) {
@@ -24,26 +22,15 @@ function dialogsPageReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_DIALOG:
             let newId = state.messages[state.messages.length - 1].id + 1;
-            let message = state.newDialogMessage;
             return {
                 ...state,
-                newDialogMessage: "",
-                messages: [...state.messages, {id: newId, text: message}]
+                messages: [...state.messages, {id: newId, text: action.text}]
             }
-
-        case CHANGE_DIALOG: {
-            return {...state, newDialogMessage: action.message}
-        }
     }
     return state
 }
 
-export function addDialogActionCreator() {
-    return {type: ADD_DIALOG}
+export function addDialogMessage(data) {
+    return {type: ADD_DIALOG, text: data.text}
 }
-
-export function changeDialogActionCreator(message) {
-    return {type: CHANGE_DIALOG, message: message}
-}
-
 export default dialogsPageReducer;

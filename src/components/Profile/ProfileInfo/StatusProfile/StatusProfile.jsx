@@ -12,7 +12,6 @@ class StatusProfile extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        debugger
         if (this.props.statusProfile !== prevProps.statusProfile) {
             this.setState({statusText: this.props.statusProfile})
         }

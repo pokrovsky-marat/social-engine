@@ -1,6 +1,4 @@
 import {api, profileApi} from "../api/api";
-
-const CHANGE_POST = 'CHANGE-POST';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 const SET_STATUS_PROFILE = 'SET-STATUS-PROFILE';
@@ -13,26 +11,14 @@ let initialState = {
         {id: 3, message: "User 3"},
         {id: 4, message: "Hey, hey, hey, ya-ha-ha!!!"}
     ],
-    newPostMessage: "",
     profileInfo: null,
     statusProfile: ""
 }
 
 function profilePageReducer(state = initialState, action) {
-    console.log("profilePageReducer")
-    let newState = {...state}
-    newState.posts = [...state.posts]
     if (action.type === ADD_POST) {
         let newId = state.posts[state.posts.length - 1].id + 1;
-        let message = state.newPostMessage;
-        newState.posts.push({id: newId, message: message});
-        newState.newPostMessage = "";// Clear text area
-    } else if (action.type === CHANGE_POST) {
-        {
-            let newState = {...state}
-            newState.newPostMessage = action.post;
-            return newState
-        }
+        return {...state, posts: [...state.posts, {id: newId, message: action.message}]}
     } else if (action.type === SET_PROFILE_INFO) {
         {
             return {...state, profileInfo: action.profileInfo}
@@ -42,16 +28,13 @@ function profilePageReducer(state = initialState, action) {
             return {...state, statusProfile: action.statusProfile}
         }
     }
-    return newState;
+    return state;
 }
 
 
-export function addPostActionCreator() {
-    return {type: ADD_POST}
-}
-
-export function changePostActionCreator(post) {
-    return {type: CHANGE_POST, post: post}
+export function addPost(data) {
+    debugger
+    return {type: ADD_POST, message: data.message}
 }
 
 export function setProfileInfo(profileInfo) {
