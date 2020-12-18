@@ -45,7 +45,7 @@ export const authMe = () => {
 export const authLogOut = () => {
     return (dispatch) => {
         authApi.authLogOut().then((response) => {
-            debugger
+
             if (response.resultCode !== 0) {
                 console.log("---Ошибка разлогинизации")
                 console.log(response.messages);
@@ -65,11 +65,12 @@ export const authLogin = (data) => {
                 console.log(response.messages);
                 console.log(response.data)
             } else {
-                authApi.authMe().then((response) => {
+/*                authApi.authMe().then((response) => {
                     if (response.resultCode === 0) {
                         dispatch(setAuthData(response.data));
                     }
-                });
+                });*/
+                dispatch(authMe());
             }
         });
     }

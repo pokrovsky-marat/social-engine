@@ -1,27 +1,24 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {authLogin, authLogOut} from "../../redux/authReducer";
-import {maxLength20, requiredField} from "../../utils/validators/validator";
+import {authLogin} from "../../redux/authReducer";
+import { requiredField} from "../../utils/validators/validator";
 import {Input} from "../common/formControls/formControls";
+import {Redirect} from "react-router-dom";
 
 
 function LoginContainer(props) {
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
     return (
         <div>
             <h1>Login</h1>
-            {props.isAuth ? <LogOut authLogOut={props.authLogOut}/> : <ReduxLoginForm onSubmit={props.authLogin}/>}
+            <ReduxLoginForm onSubmit={props.authLogin}/>
         </div>
     )
 }
 
-const LogOut = (props) => {
-    return (
-        <div>
-            <button onClick={props.authLogOut}>Log out</button>
-        </div>
-    )
-}
 
 function LoginForm(props) {
     return <form onSubmit={props.handleSubmit}>
@@ -46,4 +43,4 @@ function mapStateToProps(state) {
 }
 
 const ReduxLoginForm = reduxForm({form: 'login'})(LoginForm)
-export default connect(mapStateToProps, {authLogin, authLogOut})(LoginContainer)
+export default connect(mapStateToProps, {authLogin})(LoginContainer)

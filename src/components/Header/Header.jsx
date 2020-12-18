@@ -1,7 +1,10 @@
 import c from "./Header.module.css";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 let login = <NavLink to="/login">Login</NavLink>
 function Header(props) {
+    const logOut=()=>{
+        props.authLogOut();
+    }
     return (
         <header className={c.header}>
             <img
@@ -9,7 +12,8 @@ function Header(props) {
                 alt="logo"
             />
             <div className={c.login}>
-                {props.isAuth ? props.data.login : login}
+                {props.isAuth ? <div>{props.data.login}
+                    <button onClick={logOut} className={c.logoutBtn}>Log out</button></div>  : login}
 
             </div>
 
