@@ -1,0 +1,8 @@
+.wrongInput{
+     border:1px solid red;
+ }
+.wrongInput:after{
+    display: block;
+    content: "Wrong email or password";
+    color:red;
+}

@@ -2,7 +2,6 @@ import {api, profileApi} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 const SET_STATUS_PROFILE = 'SET-STATUS-PROFILE';
-const MY_USER_ID = 13067;
 
 let initialState = {
     posts: [
@@ -45,14 +44,14 @@ export function setStatusProfile(statusProfile) {
     return {type: SET_STATUS_PROFILE, statusProfile}
 }
 
-export const getUser = (userId = MY_USER_ID) => {
+export const getUser = (userId ) => {
     return (dispatch) => {
         api.getUser(userId).then((response) => {
             dispatch(setProfileInfo(response));
         });
     }
 }
-export const getStatusProfile = (userId = MY_USER_ID) => {
+export const getStatusProfile = (userId ) => {
     return (dispatch) => {
         profileApi.getStatusProfile(userId).then((response) => {
             dispatch(setStatusProfile(response));

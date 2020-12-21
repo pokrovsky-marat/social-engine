@@ -2,10 +2,10 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {authLogin} from "../../redux/authReducer";
-import { requiredField} from "../../utils/validators/validator";
+import {requiredField} from "../../utils/validators/validator";
 import {Input} from "../common/formControls/formControls";
 import {Redirect} from "react-router-dom";
-
+import classes from "./Login.module.css"
 
 function LoginContainer(props) {
     if (props.isAuth) {
@@ -21,18 +21,23 @@ function LoginContainer(props) {
 
 
 function LoginForm(props) {
+    debugger
     return <form onSubmit={props.handleSubmit}>
-        <div>
-            <Field validate={requiredField} component={Input} name={"email"} placeholder={"Input your email"}/>
+        <div className={props.error && classes.wrongInput}>
+            <div>
+                <Field validate={requiredField} component={Input} name={"email"} placeholder={"Input your email"}/>
+            </div>
+            <div>
+                <Field validate={requiredField} component={Input} name={"password"}
+                       placeholder={"Input your password"}/>
+            </div>
+            <div>
+                <Field component={"input"} name={"rememberMe"} type={"checkbox"}/></div>
+            <div>
+                <button>Login</button>
+            </div>
         </div>
-        <div>
-            <Field validate={requiredField} component={Input} name={"password"} placeholder={"Input your password"}/>
-        </div>
-        <div>
-            <Field component={"input"} name={"rememberMe"} type={"checkbox"}/></div>
-        <div>
-            <button>Login</button>
-        </div>
+
     </form>
 }
 

@@ -12,7 +12,7 @@ function Header(props) {
                 alt="logo"
             />
             <div className={c.login}>
-                {props.isAuth ? <div>{props.data.login}
+                {props.isAuth ? <div>{props.login}
                     <button onClick={logOut} className={c.logoutBtn}>Log out</button></div>  : login}
 
             </div>
