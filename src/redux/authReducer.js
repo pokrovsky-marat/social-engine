@@ -14,7 +14,6 @@ let initialState = {
 }
 
 function authReducer(state = initialState, action) {
-    console.log("authReducer")
 
     if (action.type === AUTH_USER) {
         return {...state, isAuth: true, login: action.login, email: action.email, id: action.id}
@@ -34,8 +33,9 @@ export function nullAuthData() {
 }
 
 export const authMe = () => {
+    console.log("authMe")
     return (dispatch) => {
-        authApi.authMe().then((response) => {
+        return authApi.authMe().then((response) => {
             if (response.resultCode === 0) {
                 dispatch(setAuthData(response.data));
             }

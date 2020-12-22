@@ -32,7 +32,6 @@ function profilePageReducer(state = initialState, action) {
 
 
 export function addPost(data) {
-    debugger
     return {type: ADD_POST, message: data.message}
 }
 

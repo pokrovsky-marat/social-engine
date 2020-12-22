@@ -4,10 +4,6 @@ import {connect} from "react-redux";
 import {authLogOut, authMe} from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component {
-    componentDidMount = () => {
-        this.props.authMe();
-    }
-
     render() {
         return (
             <Header login={this.props.login} isAuth={this.props.isAuth} authLogOut={this.props.authLogOut}/>
@@ -22,4 +18,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {authMe, authLogOut})(HeaderContainer);
+export default connect(mapStateToProps, {authLogOut})(HeaderContainer);

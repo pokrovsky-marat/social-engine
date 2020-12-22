@@ -17,7 +17,6 @@ let initialState = {
 }
 
 function usersPageReducer(state = initialState, action) {
-    console.log("usersPageReducer")
     if (action.type === FOLLOW_USER) {
         return {
             ...state,
