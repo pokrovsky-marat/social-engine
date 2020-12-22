@@ -2,16 +2,23 @@ import React from "react";
 import {connect} from "react-redux";
 import {
     goToPage,
-    getUsers,
+    requestUsers,
     toggleFollowButton,
 } from "../../redux/usersPageReducer";
 import PresentUsers from "./PresentUsers";
 import Preloader from "../common/Preloader";
+import {
+    getIdButton,
+    getIsFetching,
+    getIsRequestGoing, getNumberSheet, getPages,
+    getTotalCount,
+    getUsers
+} from "../../redux/selectors/usersSelector";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.numberSheet, this.props.pages);
+        this.props.requestUsers(this.props.numberSheet, this.props.pages);
     }
 
     goToPage = (pageNumber) => {
@@ -39,18 +46,18 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        totalCount: state.usersPage.totalCount,
-        pages: state.usersPage.pages,
-        numberSheet: state.usersPage.numberSheet,
-        isFetching: state.usersPage.isFetching,
-        isRequestGoing: state.usersPage.isRequestGoing,
-        idButton: state.usersPage.idButton
+        users: getUsers(state),
+        totalCount: getTotalCount(state),
+        pages: getPages(state),
+        numberSheet: getNumberSheet(state),
+        isFetching: getIsFetching(state),
+        isRequestGoing: getIsRequestGoing(state),
+        idButton: getIdButton(state)
     };
 };
 
 export default connect(mapStateToProps, {
-    getUsers,
+    requestUsers,
     goToPage,
     toggleFollowButton
 })(UsersContainer);

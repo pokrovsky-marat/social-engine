@@ -67,7 +67,7 @@ export function toggleButton(isRequestGoing, idButton) {
 }
 
 //ThunkCreators
-export const getUsers = (numberSheet, pages) => {
+export const requestUsers = (numberSheet, pages) => {
     return function (dispatch) {
         dispatch(togglePreloader(true));
         api.getUsers(numberSheet, pages)
