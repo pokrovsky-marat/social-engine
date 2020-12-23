@@ -1,8 +1,9 @@
 import c from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader";
 import ava from "./../../../assets/pics/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-import StatusProfile from "./StatusProfile/StatusProfile";
+
 import React from "react";
+import StatusProfile from "./StatusProfile/StatusProfile";
 
 function ProfileInfo(props) {
     if (props.profileInfo) {
