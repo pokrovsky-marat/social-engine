@@ -21,7 +21,6 @@ function LoginContainer(props) {
 
 
 function LoginForm(props) {
-    debugger
     return <form onSubmit={props.handleSubmit}>
         <div className={props.error && classes.wrongInput}>
             <div>

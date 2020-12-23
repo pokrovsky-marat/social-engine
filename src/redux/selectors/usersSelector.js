@@ -1,6 +1,19 @@
-export function getUsers(state) {
+import {createSelector} from "reselect";
+
+function getUsersSimple(state) {
     return state.usersPage.users
 }
+
+/*export const getUsers = createSelector(getUsersSimple,getTotalCount (users,totalCount) => {
+    return users.filter((item) => {
+        return !!item.status;
+    })
+})*/
+
+export const getUsers = createSelector(getUsersSimple, (users) => {
+    return users.filter((i) => true)
+})
+
 
 export function getTotalCount(state) {
     return state.usersPage.totalCount
