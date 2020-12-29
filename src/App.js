@@ -73,5 +73,5 @@ let mapStateToProps = (state) => {
     }
 
 }
-export default compose(withRouter, connect(mapStateToProps, {authMe, initApp}))(App)
+export default compose(/*withRouter,*/ connect(mapStateToProps, {authMe, initApp}))(App)
 
