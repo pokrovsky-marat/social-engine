@@ -23,6 +23,7 @@ const AddPostsForm = (props) => {
 }
 
 function MyPosts(props) {
+    console.log(`MyPosts ${props}`)
     return (
         <div className={c.posts}>
             <h3>My posts</h3>
