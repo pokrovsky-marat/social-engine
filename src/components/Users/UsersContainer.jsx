@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
+    changeStart,
     goToPage,
     requestUsers,
     toggleFollowButton,
@@ -38,6 +39,8 @@ class UsersContainer extends React.Component {
                     isRequestGoing={this.props.isRequestGoing}
                     idButton={this.props.idButton}
                     toggleFollowButton={this.props.toggleFollowButton}
+                    start={this.props.start}
+                    changeStart={this.props.changeStart}
                 />
             </>
         );
@@ -52,12 +55,14 @@ let mapStateToProps = (state) => {
         numberSheet: getNumberSheet(state),
         isFetching: getIsFetching(state),
         isRequestGoing: getIsRequestGoing(state),
-        idButton: getIdButton(state)
+        idButton: getIdButton(state),
+        start: state.usersPage.start
     };
 };
 
 export default connect(mapStateToProps, {
     requestUsers,
     goToPage,
-    toggleFollowButton
+    toggleFollowButton,
+    changeStart
 })(UsersContainer);

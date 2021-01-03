@@ -5,6 +5,8 @@ const SET_STATE = 'SET-STATE';
 const CHANGE_SHEET = 'CHANGE-SHEET'
 const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER'
 const TOGGLE_BUTTON = 'TOGGLE-BUTTON'
+const CHANGE_START = 'CHANGE-START'
+
 
 let initialState = {
     users: [],
@@ -13,7 +15,8 @@ let initialState = {
     numberSheet: 1,  //What number of sheets to show user
     isFetching: false,
     isRequestGoing: false,
-    idButton: null
+    idButton: null,
+    start:0
 }
 
 function usersPageReducer(state = initialState, action) {
@@ -40,6 +43,8 @@ function usersPageReducer(state = initialState, action) {
         return {...state, isFetching: action.isFetching};
     } else if (action.type === TOGGLE_BUTTON) {
         return {...state, isRequestGoing: action.isRequestGoing, idButton: action.idButton};
+    } else if (action.type === CHANGE_START) {
+        return {...state, start: action.value};
     }
     return state;
 }
@@ -64,6 +69,11 @@ export function togglePreloader(isFetching) {
 export function toggleButton(isRequestGoing, idButton) {
 
     return {type: TOGGLE_BUTTON, isRequestGoing, idButton}
+}
+
+export function changeStart(value) {
+
+    return {type: CHANGE_START, value}
 }
 
 //ThunkCreators

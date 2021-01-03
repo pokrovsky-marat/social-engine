@@ -4,16 +4,20 @@ import img from "./../../assets/pics/146-1468479_my-profile-icon-blank-profile-p
 import {NavLink} from "react-router-dom";
 
 let PresentUsers = (props) => {
+
+    let end = props.start + 10;
     let countPagesArray = [];
     let countPages = Math.ceil(props.totalCount / props.pages);
     for (let i = 1; i <= countPages; i++) {
         countPagesArray.push(i);
     }
+    let portion = countPagesArray.slice(props.start, end)
 
     return (
         <div className={s.users}>
+
             <div>
-                {countPagesArray.map((item, index) => (
+                {portion.map((item, index) => (
                     <button
                         className={item === props.numberSheet ? s.btn : ""}
                         onClick={() => {
@@ -24,6 +28,16 @@ let PresentUsers = (props) => {
                         {item}
                     </button>
                 ))}
+                <button onClick={() => {
+                    props.changeStart(props.start - 10);
+                    props.goToPage(props.start-9);
+                }} disabled={props.start === 0 && "true"}>back
+                </button>
+                <button onClick={() => {
+                    props.changeStart(props.start + 10)
+                    props.goToPage(props.start+11);
+                }} disabled={props.start + 10 > countPages && "true"}>forward
+                </button>
             </div>
             {props.users.map((item) => (
                 <div key={item.id} className={s.user}>
