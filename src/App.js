@@ -6,11 +6,12 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
-import React from "react";
+import React, {Suspense} from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {authMe} from "./redux/authReducer";
@@ -36,7 +37,10 @@ class App extends React.Component {
                 <div className="app-wrapper-content">
                     <Switch>
                         <Route path='/profile/:userId?'>
-                            <ProfileContainer/>
+                            <Suspense fallback={<div>Загрузка...</div>}>
+                                <ProfileContainer/>
+                            </Suspense>
+
                         </Route>
                         <Route path='/dialogs'>
                             <DialogsContainer/>
