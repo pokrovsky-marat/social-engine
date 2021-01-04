@@ -1,21 +1,22 @@
 .content_img {
-    width: 700px;
-    height:150px;
+  width: 700px;
+  height: 150px;
 }
-.description{
-    padding: 10px;
+.description {
+  padding: 10px;
 }
 .table {
-    border: 1px solid lightcoral;
+  border: 1px solid lightcoral;
 }
-.table td{
-    padding: 5px;
-    border: 1px solid lightcoral;
+.table td {
+  padding: 5px;
+  border: 1px solid lightcoral;
 }
-.ava{
-    width: 300px;
+.ava {
+  width: 300px;
+  cursor: pointer;
 }
-.status{
-    text-align: center;
-    padding: 10px;
+.status {
+  text-align: center;
+  padding: 10px;
 }
