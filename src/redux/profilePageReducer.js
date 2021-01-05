@@ -59,9 +59,10 @@ export function setStatusProfile(statusProfile) {
 }
 
 export const getUser = (userId) => {
+  console.log("getUser ----------")
   return (dispatch) => {
     api.getUser(userId).then((response) => {
-      debugger;
+
       dispatch(setProfileInfo(response));
     });
   };
@@ -83,13 +84,12 @@ export const updateStatusProfile = (status) => {
   };
 };
 export const updateProfilePhoto = (image, id) => {
-  debugger;
   return (dispatch) => {
     profileApi
       .updateProfilePhoto(image)
       .then((response) => {
         if (response.resultCode === 0) {
-          debugger;
+      
           dispatch(getUser(id));
         } else {
           console.log(response.messages);
@@ -98,6 +98,23 @@ export const updateProfilePhoto = (image, id) => {
       .catch((err) => {
         console.log("error!!!");
       });
+  };
+};
+export const updateProfileData = (data, id) => {
+  return (dispatch) => {
+    profileApi
+        .updateProfileData(data)
+        .then((response) => {
+          debugger
+          if (response.resultCode === 0) {
+            dispatch(getUser(id));
+          } else {
+            console.log(response.messages);
+          }
+        })
+        .catch((err) => {
+          console.log("error!!!");
+        });
   };
 };
 

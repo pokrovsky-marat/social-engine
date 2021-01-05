@@ -5,13 +5,7 @@
 .description {
   padding: 10px;
 }
-.table {
-  border: 1px solid lightcoral;
-}
-.table td {
-  padding: 5px;
-  border: 1px solid lightcoral;
-}
+
 .ava {
   width: 300px;
   cursor: pointer;
@@ -19,4 +13,13 @@
 .status {
   text-align: center;
   padding: 10px;
+}
+.profileData{
+  padding: 5px;
+}
+.profileData .contacts{
+  padding-left: 20px;
+}
+.profileData b{
+  color: brown;
 }
