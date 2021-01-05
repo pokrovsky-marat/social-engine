@@ -80,12 +80,18 @@ export const authApi = {
     authMe() {
         return instance.get(`auth/me`).then((response) => response.data);
     },
-    authLogin(email, password, rememberMe) {
+    authLogin(data) {
         return instance
-            .post(`auth/login`, {email, password, rememberMe})
+            .post(`auth/login`, {...data})
             .then((response) => response.data);
     },
     authLogOut() {
         return instance.delete(`auth/login`).then((response) => response.data);
     },
+};
+export const securityApi = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`).then((response) => response.data);
+    },
+
 };
